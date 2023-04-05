@@ -27,18 +27,20 @@ class theaters:
         ]
         pprint(list(theatres.aggregate(pipe)))
         
-    def top10theatersNear(self,cod):
-        pipe=[
-            {"$project":{"_id":0,"theaterId":1,"cord":"$location.geo.coordinates"}},
-        ]
-        result=list(theatres.aggregate(pipe))
-        # pprint(result)
-        lst=[]
-        for i in result:
-            lst.append(( i['theaterId'], (cod[0]-i['cord'][0])*(cod[0]-i['cord'][0]) + (cod[1]-i['cord'][1])*(cod[1]-i['cord'][1]) ))
-        lst.sort(key=lambda a: a[1])
-        for i in range(0,10):
-            print(f"TheaterId: {lst[i][0]}")
+    def top10theatersNear(self,coords):
+         theatres.create_index([("location.geo", "2dsphere")])
+         pprint(list(theatres.find(
+        {
+        "location.geo": {
+            "$near": {
+            "$geometry": {
+                "type": "Point" ,
+                "coordinates": coords
+            }}
+        },
+      
+        
+        },{"_id":0,"location":1,"theaterId":1}).limit(10)))
         
         
 def main():
