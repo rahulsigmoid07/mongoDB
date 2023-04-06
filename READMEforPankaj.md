@@ -1,16 +1,16 @@
 # mongoDB
 mongoDB assignment
 
-###peer review for pankaj
+### peer review for pankaj
 
-####Comments collection
+#### Comments collection
 1.1) Created an aggregation pipeline to group the comments by user name, count the number of comments made by each user, sort the results in descending order by the count, and then limit the results to 10.
 
 1.2) Created an aggregation pipeline to group the comments by movie ID, count the number of comments for each movie, sort the results in descending order by the count, and then limit the results to 10.
 
 1.3) Created an aggregation pipeline to first project the year and month from the date field, then match the documents where the year matches the given year, group the comments by month and count the number of comments for each month, project the month and count fields and exclude the _id field, and finally sort the results by month in ascending order.
 
-####movies collection
+#### movies collection
 1.1) Created an aggregation pipeline to first match the documents where the IMDB rating is not empty, then sort the documents by IMDB rating in descending order, limit the results to N documents, and project the _id, title, and imdb.rating fields.
 
 1.2) Created an aggregation pipeline to first match the documents where the IMDB rating is not empty and the year matches the provided year, then sort the documents by IMDB rating in descending order, limit the results to N documents, and project the _id, title, imdb.rating, and year fields.
@@ -40,7 +40,7 @@ sorts the actors based on the count in descending order
 
 4.uses a pipeline that matches movies with that genre, sorts them in descending order based on IMDB rating, removes movies without a rating, projects the movie title and rating fields, and limits the results to the top N. Then prints the results for each genre.
 
-####Theatres collection
+#### Theatres collection
 1.1) Uses a pipeline to first group the theaters collection by city and counts the number of theaters in each city using the $sum aggregation operator. It then sorts the cities in descending order based on the count of theaters and limits the result to the top 10 cities using the $limit aggregation operator. Finally, projects the city and count fields and prints the result
 
 1.2) defined a function top10theatersNear which takes a list of 2 float values representing the longitude and latitude of a location. The function creates a 2dsphere index on the location.geo field of the theaters collection, and then queries the collection to find the 10 theaters nearest to the given coordinates. The function prints the result
